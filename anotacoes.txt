@@ -1,0 +1,50 @@
+. -> qualquer caracter
+* -> o asterisco que serve para definir uma quantidade de chars, zero ou mais vezes
+{ e } -> as chaves que servem para definir uma quantidade de caracteres específicas que é desejado encontrar
+
+\d => digito procurado nos numeros
+\d\d\d => encontraria locais com 3 numeros seguidos
+\. => faz com que interprete como um ponto de fato
+
+-> EXEMPLO DE COMO IDENTIFICAR UM CPF
+\d\d\d\.\d\d\d\.\d\d\d-\d\d
+
+-> Quantifier = Caractere especial que define quantas vezes um caractere deve aparecer
+
+-> EXEMPLO DE COMO IDENTIFICAR UM CPF COM QUANTIFIER
+\d{3}\.\d{3}\.\d{3}-\d{2}
+
+-> EXERCICIO
+Encontrar o CNPJ
+Solução => \d{2}\.\d{3}\.\d{3}/\d{4}-\d{2}
+
+-> EXERCICIO
+Encontrar o CEP
+Solução => \d{5}-\d{3}
+
+-> Um IP pode ter de um a três algarismos a cada ponto
+\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}
+
+? -> siguinifica que algo não é obrigatorio
+Exemplo de como usar em um CPF caso ele nao tenha sido preenchido com a formatação correta
+\d{3}\.?\d{3}\.?\d{3}-?\d{2} ou \d{3}\.{0,1}\d{3}\.{0,1}\d{3}-{0,1}\d{2} 
+
+-> Defininindo um conjunto de caracteres (Um ou outro, no caso - ou .)
+Exemplo de como usar em um CPF caso ele nao tenha sido preenchido com a formatação correta
+\d{3}\.?\d{3}\.?\d{3}[-\.]?\d{2}
+
+
+===================================================== AUMENTANDO O NIVEL ======================================================
+
+-> Data
+Usar o \s+ para livrar de espaços execesivos
+
+? -> 0 ou 1 vez
+* -> 0 ou mais vezes
++ -> 1 ou mais vezes
+{n} -> exatamente N vezes
+{n,} -> no minimo N vezes
+{n, m} -> minimo N vezes e maximo M vezes
+[A-Z] -> um caractere maiusculo
+
+[1-3]?\d\s+de\s+[A-Z][a-zç]{3,8}\s+de\s+[12]\d{3}
