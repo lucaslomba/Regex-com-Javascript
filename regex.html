@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+    <!-- VAVLIDANDO FORMULARIO -->
+    <form>
+        <input pattern="[0-9]*">
+        <input type="submit" value="Enviar dados">
+    </form>
+
+    <!-- EXEMPLO COM JAVASCRIP -->
+    <script>
+        var alvo = '11a22b33c'
+        var exp  = / (\d\d)(\w)/g;
+        var resultado = null
+        while (resultado = exp.exec(alvo) ){
+            console.log(resultado)
+            console.log(exp.lastIndex);
+        }
+    </script>
+
+     <!-- EXEMPLO COM JAVASCRIP DATA -->
+     <script>
+        var anoMesDia = '2007-12-31';
+        var exp = /-/g
+
+        anoMesDia = anoMesDia.replace(exp, '/');
+
+        console.log(anoMesDia)
+    </script>
+
+    <!-- EXEMPLO COM JAVASCRIP SPLIT -->
+    <script>
+        var arquivo = '100,200-150,200;20';
+        var exp = /[,;-]/;
+        var valores = arquivo.split(exp);
+
+        console.log(valores)
+    </script>
+</body>
+</html>
