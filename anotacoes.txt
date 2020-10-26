@@ -48,3 +48,70 @@ Usar o \s+ para livrar de espaços execesivos
 [A-Z] -> um caractere maiusculo
 
 [1-3]?\d\s+de\s+[A-Z][a-zç]{3,8}\s+de\s+[12]\d{3}
+
+-> Validar placa veiculo
+[A-Z]{3}-\d{4}
+
+[A-Za-z][A-Za-z1-9]{1-9}
+
+============================================== COMO USAR DATA DE FORMA MAIS LEGIVEL JS ========================================
+Em vez de fazer -> [1-3]?\d\s+de\s+[A-Z][a-zç]{3,8}\s+de\s+[12]\d{3}
+
+fazemos:
+var DIA  = "[0123]?\d"; 
+var _DE_ = "\s+de\s+";
+var MES  = "[A-Za-z][a-zç]{1,8}";
+var ANO  = "[12]\d{3}";
+
+var stringRegex = DIA + _DE_ +  MES + _DE_ + ANO;
+
+var objetoRegex  = new RegExp(stringRegex, 'g');
+
+=============================================================== ANCORAS ========================================================
+-> Ancora é uma forma de encontrar uma posição dentro do texto (Devolve uma posição)
+
+\b -> Word boundary
+
+Exemplo -> \bde\b encontraria todas as sequencias "de" do texto
+
+o \b avalia baseado nos Word chars se a sequencia é extamente a passada
+
+^ -> definir qual o inicio que deseja
+
+Exemplo -> ^http://
+
+$ -> final que deseja
+
+Exemplo validando URL -> ^https://+\.html$
+
+================================================================= GRUPOS ========================================================
+Grupo é definido atraves de parenteses ()
+
+?: -> pede que nao retorne aquele grupo (Non-capturing-group)
+
+Usando a data novamente
+([1-3]?\d)\s+(?:de\s+)?([A-Z][a-zç]{3,8})\s+(?:de\s+)?([12]\d{3})
+
+Desafio E-mail Alura
+([a-z.]{4,14}[a-z\d])@(?:caelum.com.br|alura.com.br)
+
+
+Desafio E-mail Alura 2
+^([\w-]\.?)+@([\w-]+\.)+([A-Za-z]{2,4})+$
+
+Explicação:
+
+a regex usa âncoras no início ^ e fim $ para garantir o match inteiro;
+antes do @, temos: ^([\w-]\.?)+
+definimos uma classe com word-chars e hífen, seguido por um ponto opcional: [\w-]\.?
+essa classe pode se repetir uma ou mais vezes, então criamos um grupo e + ao final: ([\w-]\.?)+
+depois do @, temos:
+([\w-]+\.)+, que é bastante parecido com o anterior ao @, porém com o . obrigatório,
+([A-Za-z]{2,4})+$, que é o final da nossa regex, seleciona o domínio do email, como br, com, us. O mínimo de letras dessa parte final devem ser 2 e no máximo 4.
+Há vários exemplo complexos disponíveis na web, mas lembre-se que a autenticidade de um email só pode ser verificada enviando um email para usuário.
+
+Desafio do correio
+([\w\s]+)\|(?:\d\d\/\d\d\/\d\d\d\d)\|([\w\s]+)\|(\d{1,4})\|(\d{5}-\d{3})\|(?:[\w\s]{10,})
+
+Backreference -> Referenciando a aulgum grupo (Tipo um if) 
+</\1>
